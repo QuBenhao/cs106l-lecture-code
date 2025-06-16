@@ -8,10 +8,8 @@ To compile and run code in this repository, make sure you have [completed A0 to 
 ## resources
 
 [课程网站](http://web.stanford.edu/class/cs106l/)
- 
-[课程视频](https://www.youtube.com/channel/UCSqr6y-eaQT_qZJVUm_4QxQ/playlists)
 
-[课程教材](http://web.stanford.edu/class/cs106l/full_course_reader.pdf)
+[课程视频](https://www.youtube.com/channel/UCSqr6y-eaQT_qZJVUm_4QxQ/playlists)
 
 [Assignment1下载网址](https://github.com/snme/cs106L-assignment1)
 
