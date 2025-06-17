@@ -6,6 +6,7 @@ void cinGetlineBug() {
   double tao;
   std::string name;
   std::cin >> pi;
+  // std::cin.ignore();
   std::getline(std::cin, name);
   std::cin >> tao;
   std::cout << "my name is : " << name << " tao is : " << tao

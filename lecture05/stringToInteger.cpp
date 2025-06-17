@@ -9,9 +9,8 @@
 int stringToInteger(const std::string& str) {
     std::istringstream iss(str);
     int value;
-    iss >> value;
-
-    if (iss.fail() || !iss.eof()) {
+    char ch;
+    if (!(iss >> value) || (iss >> ch)) {
         throw std::runtime_error("Invalid input: unable to convert string to integer.");
     }
     return value;
