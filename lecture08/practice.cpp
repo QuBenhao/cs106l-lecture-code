@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <sstream>
 #include <stdexcept>
@@ -65,11 +66,11 @@ T getTypeValue() {
     }
 }
 
-template<typename InputIterator, typename DataType>
-int countOccurrences(InputIterator begin, InputIterator end, DataType value) {
+template<typename InputIterator, typename UnaryPredicate>
+int countOccurrences(InputIterator begin, InputIterator end, UnaryPredicate predicate) {
     int count = 0;
     for (auto it = begin; it != end; ++it) {
-        if (*it == value) {
+        if (predicate(*it)) {
             ++count;
         }
     }
@@ -92,14 +93,15 @@ int main() {
     // Time val3 = getTypeValue<Time>();
     // std::cout << "You entered: " << val0 << ", " << val1 << ", " << val2 << ", " << val3 << std::endl;
 
+    auto lessThanFive = [](int x) { return x < 5; };
     std::list<int> lst{1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int count = countOccurrences(lst.begin(), lst.end(), 5);
+    int count = countOccurrences(lst.begin(), lst.end(), lessThanFive);
 
-    std::cout << "Count of 5 in list: " << count << std::endl;
+    std::cout << "Count of elements less than 5 in list: " << count << std::endl;
     std::vector<Time> times = {Time(1, 30), Time(2, 15), Time(0, 45)};
-    int timeCount = countOccurrences(times.begin(), times.end(), Time(1, 30));
+    int timeCount = countOccurrences(times.begin(), times.end(), [](const Time& t) { return t == Time(1, 30); });
     std::cout << "Count of Time(1, 30) in vector: " << timeCount << std::endl;
-    timeCount = countOccurrences(times.begin() + 1, times.end(), Time(1, 30));
+    timeCount = countOccurrences(times.begin() + 1, times.end(), [](const Time& t) { return t == Time(1, 30); });
     std::cout << "Count of Time(1, 30) in vector (from second element): " << timeCount << std::endl;
 
     // std::unordered_map<std::string, int> wordCount{
@@ -107,6 +109,7 @@ int main() {
     //     {"banana", 2},
     //     {"orange", 5}
     // };
-    // int wordOccurrences = countOccurrences(wordCount.begin(), wordCount.end(), std::make_pair(std::string("banana"), 2));
+    // int wordOccurrences = countOccurrences(wordCount.begin(),
+    // wordCount.end(), std::make_pair(std::string("banana"), 2));
     // std::cout << "Count of ('banana', 2) in unordered_map: " << wordOccurrences << std::endl;
 }
