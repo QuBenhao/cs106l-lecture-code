@@ -14,8 +14,9 @@ public:
     int getIdNumber() const;
 #ifdef MEMBER_WISE
     bool operator<(const StanfordID& other) const;
+#else
+    friend bool operator<(const StanfordID& lhs, const StanfordID& rhs);
 #endif // MEMBER_WISE
     bool operator==(const StanfordID& other) const;
     bool operator!=(const StanfordID& other) const;
-    friend bool operator<(const StanfordID& lhs, const StanfordID& rhs);
 };
